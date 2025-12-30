@@ -17,10 +17,55 @@ config:
       searchUrl: https://www.google.com/search?q=site:alibabacloud.com/help+
     tencent:
       name: Tencent Cloud
-      searchUrl: https://www.tencentcloud.com/search?q=
+      searchUrl: https://www.tencentcloud.com/search?type=all&wd=
     ibm:
       name: IBM Cloud
       searchUrl: https://cloud.ibm.com/docs/search?q=
+  search_engines:
+    google:
+      name: Google
+      url: https://www.google.com/search?q=
+      icon_domain: google.com
+    bing:
+      name: Bing
+      url: https://www.bing.com/search?q=
+      icon_domain: bing.com
+    duckduckgo:
+      name: DuckDuckGo
+      url: https://duckduckgo.com/?q=
+      icon_domain: duckduckgo.com
+    brave:
+      name: Brave
+      url: https://search.brave.com/search?q=
+      icon_domain: brave.com
+    qwant:
+      name: Qwant
+      url: https://www.qwant.com/?q=
+      icon_domain: qwant.com
+    yahoo:
+      name: Yahoo
+      url: https://search.yahoo.com/search?p=
+      icon_domain: yahoo.com
+    baidu:
+      name: Baidu
+      url: https://www.baidu.com/s?wd=
+      icon_domain: baidu.com
+    yandex:
+      name: Yandex
+      url: https://yandex.com/search/?text=
+      icon_domain: yandex.com
+    ecosia:
+      name: Ecosia
+      url: https://www.ecosia.org/search?q=
+      icon_domain: ecosia.org
+    naver:
+      name: Naver
+      url: https://search.naver.com/search.naver?query=
+      icon_domain: naver.com
+    mojeek:
+      name: Mojeek
+      url: https://www.mojeek.com/search?q=
+      icon_domain: mojeek.com
 data:
 - id: core-infrastructure
   name: Core Infrastructure

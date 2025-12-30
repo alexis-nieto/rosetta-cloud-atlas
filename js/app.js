@@ -14,14 +14,16 @@ function cloudMatrix() {
         modalOpen: false,
         selectedService: { name: '', provider: '', url: null },
         providers: {},
+        searchEngines: {},
 
         async init() {
             try {
-                const res = await fetch('data.yaml');
+                const res = await fetch('data_db.yaml');
                 const text = await res.text();
                 const hierarchy = jsyaml.load(text);
 
                 this.providers = hierarchy.config.providers;
+                this.searchEngines = hierarchy.config.search_engines || {};
                 const data = hierarchy.data;
 
                 // Flatten hierarchy into rows for the table
@@ -103,6 +105,10 @@ function cloudMatrix() {
             this.hiddenColumns = [];
         },
 
+        get sortedSearchEngines() {
+            return Object.values(this.searchEngines).sort((a, b) => a.name.localeCompare(b.name));
+        },
+
         highlight(text) {
             if (!this.search || !text) return text;
             const regex = new RegExp(`(${this.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
@@ -114,8 +120,6 @@ function cloudMatrix() {
             if (!serviceName || serviceName === '-') return;
 
             // Find the provider key based on the display name
-            // This is a bit reverse lookup, but since we flattened it using display names, we need to map back or store keys.
-            // A better way would be to store the provider key in the selectedService.
             const providerKey = Object.keys(this.providers).find(key => this.providers[key].name === provider);
 
             this.selectedService = {
@@ -127,16 +131,9 @@ function cloudMatrix() {
             this.modalOpen = true;
         },
 
-        searchWeb(engine) {
+        searchWeb(engineUrl) {
             const query = encodeURIComponent(`${this.selectedService.name} ${this.selectedService.provider}`);
-            const engines = {
-                google: `https://www.google.com/search?q=${query}`,
-                ddg: `https://duckduckgo.com/?q=${query}`,
-                bing: `https://www.bing.com/search?q=${query}`,
-                brave: `https://search.brave.com/search?q=${query}`,
-                qwant: `https://www.qwant.com/?q=${query}`
-            };
-            window.open(engines[engine], '_blank');
+            window.open(`${engineUrl}${query}`, '_blank');
         },
 
         searchNativeDocs() {
