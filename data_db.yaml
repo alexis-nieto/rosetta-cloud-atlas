@@ -1,0 +1,800 @@
+config:
+  providers:
+    aws:
+      name: AWS
+      searchUrl: https://docs.aws.amazon.com/search/doc-search.html?searchQuery=
+      icon_domain: aws.amazon.com
+    azure:
+      name: Azure
+      searchUrl: https://learn.microsoft.com/en-us/search/?terms=
+      icon_domain: azure.microsoft.com
+    gcp:
+      name: Google Cloud
+      searchUrl: https://cloud.google.com/search?q=
+      icon_domain: cloud.google.com
+    oracle:
+      name: Oracle Cloud (OCI)
+      searchUrl: https://docs.oracle.com/search/?q=
+      icon_domain: oracle.com
+    alibaba:
+      name: Alibaba Cloud
+      searchUrl: https://www.google.com/search?q=site:alibabacloud.com/help+
+      icon_domain: alibabacloud.com
+    tencent:
+      name: Tencent Cloud
+      searchUrl: https://www.tencentcloud.com/search?type=all&wd=
+      icon_domain: tencentcloud.com
+    ibm:
+      name: IBM Cloud
+      searchUrl: https://cloud.ibm.com/docs/search?q=
+      icon_domain: cloud.ibm.com
+  search_engines:
+    google:
+      name: Google
+      url: https://www.google.com/search?q=
+      icon_domain: google.com
+    bing:
+      name: Bing
+      url: https://www.bing.com/search?q=
+      icon_domain: bing.com
+    duckduckgo:
+      name: DuckDuckGo
+      url: https://duckduckgo.com/?q=
+      icon_domain: duckduckgo.com
+    brave:
+      name: Brave
+      url: https://search.brave.com/search?q=
+      icon_domain: brave.com
+    qwant:
+      name: Qwant
+      url: https://www.qwant.com/?q=
+      icon_domain: qwant.com
+    yahoo:
+      name: Yahoo
+      url: https://search.yahoo.com/search?p=
+      icon_domain: yahoo.com
+    baidu:
+      name: Baidu
+      url: https://www.baidu.com/s?wd=
+      icon_domain: baidu.com
+    yandex:
+      name: Yandex
+      url: https://yandex.com/search/?text=
+      icon_domain: yandex.com
+    ecosia:
+      name: Ecosia
+      url: https://www.ecosia.org/search?q=
+      icon_domain: ecosia.org
+    naver:
+      name: Naver
+      url: https://search.naver.com/search.naver?query=
+      icon_domain: naver.com
+    mojeek:
+      name: Mojeek
+      url: https://www.mojeek.com/search?q=
+      icon_domain: mojeek.com
+    yep:
+      name: YEP
+      url: https://yep.com/web?q=
+      icon_domain: yep.com
+    alternativeto:
+      name: AlternativeTo
+      url: https://alternativeto.net/browse/search/?q=
+      icon_domain: alternativeto.net
+  ai_engines:
+    chatgpt:
+      name: ChatGPT
+      url: https://chat.openai.com/?q=
+      icon_domain: openai.com
+    phind:
+      name: Phind
+      url: https://phind.com/search?q=
+      icon_domain: phind.com
+    andi:
+      name: Andi
+      url: https://andisearch.com/?q=
+      icon_domain: andisearch.com
+    perplexity:
+      name: Perplexity
+      url: https://www.perplexity.ai/search?q=
+      icon_domain: perplexity.ai
+    exa:
+      name: Exa
+      url: https://exa.ai/search?q=
+      icon_domain: exa.ai
+data:
+- id: core-infrastructure
+  name: Core Infrastructure
+  domains:
+  - id: compute
+    name: Compute
+    categories:
+    - id: virtual-machines
+      name: Virtual machines
+      services:
+        aws: EC2
+        azure: Virtual Machines
+        gcp: Compute Engine
+        oracle: OCI Compute
+        alibaba: ECS
+        tencent: CVM
+        ibm: Virtual Server for VPC
+    - id: bare-metal
+      name: Bare Metal
+      services:
+        aws: EC2 Bare Metal
+        azure: Bare Metal Servers
+        gcp: Bare Metal
+        oracle: Bare Metal Instances
+        alibaba: ECS Bare Metal
+        tencent: BM
+        ibm: Bare Metal Servers
+    - id: kubernetes
+      name: Kubernetes
+      services:
+        aws: EKS
+        azure: Kubernetes Service (AKS)
+        gcp: Kubernetes Engine (GKE)
+        oracle: OKE
+        alibaba: ACK
+        tencent: TKE
+        ibm: Kubernetes Service
+    - id: serverless-functions
+      name: Serverless functions
+      services:
+        aws: Lambda
+        azure: Functions
+        gcp: Cloud Functions
+        oracle: Functions
+        alibaba: Function Compute
+        tencent: SCF
+        ibm: Code Engine
+    - id: container-managed
+      name: Managed Kubernetes
+      services:
+        aws: EKS
+        azure: Kubernetes Service (AKS)
+        gcp: Kubernetes Engine (GKE)
+        oracle: OKE
+        alibaba: ACK
+        tencent: TKE
+        ibm: Kubernetes Service
+    - id: container-serverless
+      name: Serverless Containers
+      services:
+        aws: Fargate
+        azure: Container Instances (ACI)
+        gcp: Cloud Run
+        oracle: Container Instances
+        alibaba: ECI
+        tencent: EKS
+        ibm: Code Engine
+    - id: container-registry
+      name: Container Registry
+      services:
+        aws: ECR
+        azure: Container Registry (ACR)
+        gcp: Artifact Registry
+        oracle: Container Registry
+        alibaba: ACR
+        tencent: TCR
+        ibm: Container Registry
+  - id: storage
+    name: Storage
+    categories:
+    - id: object-storage
+      name: Object storage
+      services:
+        aws:
+          name: S3
+          url: https://aws.amazon.com/s3/
+        azure: Blob Storage
+        gcp: Cloud Storage
+        oracle: Object Storage
+        alibaba: OSS
+        tencent: COS
+        ibm: Cloud Object Storage
+    - id: block-storage
+      name: Block storage
+      services:
+        aws: EBS
+        azure: Managed Disks
+        gcp: Persistent Disk
+        oracle: Block Volumes
+        alibaba: Cloud Disk
+        tencent: CBS
+        ibm: Block Storage
+    - id: file-storage
+      name: File storage
+      services:
+        aws: EFS
+        azure: Azure Files
+        gcp: Filestore
+        oracle: File Storage
+        alibaba: NAS
+        tencent: Cloud File Storage
+        ibm: File Storage
+    - id: archive-storage
+      name: Archive storage
+      services:
+        aws: Glacier
+        azure: Azure Archive Storage
+        gcp: Archive Storage
+        oracle: Archive Storage
+        alibaba: Cold Archive
+        tencent: Cold Storage
+        ibm: Cloud Object Storage Archive
+  - id: networking
+    name: Networking
+    categories:
+    - id: virtual-network
+      name: Virtual network
+      services:
+        aws: VPC
+        azure: Virtual Network (VNet)
+        gcp: Virtual Private Cloud (VPC)
+        oracle: Virtual Cloud Network (VCN)
+        alibaba: Virtual Private Cloud (VPC)
+        tencent: Virtual Private Cloud (VPC)
+        ibm: Virtual Private Cloud (VPC)
+    - id: load-balancing
+      name: Load balancing
+      services:
+        aws: ELB
+        azure: Load Balancer
+        gcp: Cloud Load Balancing
+        oracle: Load Balancer
+        alibaba: Server Load Balancer (SLB)
+        tencent: Cloud Load Balancer (CLB)
+        ibm: Load Balancer
+    - id: dns
+      name: DNS
+      services:
+        aws: Route 53
+        azure: DNS
+        gcp: Cloud DNS
+        oracle: OCI DNS
+        alibaba: Alibaba DNS
+        tencent: Tencent DNS
+        ibm: IBM DNS
+    - id: private-connectivity
+      name: Private connectivity
+      services:
+        aws: Direct Connect
+        azure: ExpressRoute
+        gcp: Cloud Interconnect
+        oracle: FastConnect
+        alibaba: Express Connect
+        tencent: Direct Connect
+        ibm: Direct Link
+    - id: vpn
+      name: VPN
+      services:
+        aws: VPN Gateway
+        azure: Azure VPN Gateway
+        gcp: Cloud VPN
+        oracle: OCI VPN
+        alibaba: VPN Gateway
+        tencent: VPN Gateway
+        ibm: VPN
+  - id: identity
+    name: Identity
+    categories:
+    - id: identity-access-management
+      name: Identity & access management
+      services:
+        aws: IAM
+        azure: Microsoft Entra ID
+        gcp: Cloud IAM
+        oracle: OCI IAM
+        alibaba: RAM
+        tencent: CAM
+        ibm: IBM IAM
+- id: data-analytics
+  name: Data & Analytics
+  domains:
+  - id: databases
+    name: Databases
+    categories:
+    - id: relational-db
+      name: Relational DB
+      services:
+        aws: RDS
+        azure: SQL Database
+        gcp: Cloud SQL
+        oracle: Autonomous DB
+        alibaba: ApsaraDB RDS
+        tencent: TencentDB (MySQL/CynosDB)
+        ibm: Db2
+    - id: nosql-db
+      name: NoSQL DB
+      services:
+        aws: DynamoDB
+        azure: Cosmos DB
+        gcp: Bigtable / Firestore
+        oracle: NoSQL Database
+        alibaba: ApsaraDB for MongoDB/TableStore
+        tencent: TencentDB for MongoDB/Redis
+        ibm: Cloudant
+    - id: data-warehouse
+      name: Data warehouse
+      services:
+        aws: Redshift
+        azure: Synapse Analytics
+        gcp: BigQuery
+        oracle: Autonomous Data Warehouse
+        alibaba: AnalyticDB
+        tencent: Cloud Data Warehouse
+        ibm: Db2 Warehouse
+    - id: graph-db
+      name: Graph DB
+      services:
+        aws: Neptune
+        azure: Cosmos DB (Gremlin)
+        gcp: Spanner Point-in-Time
+        oracle: Graph
+        alibaba: GDB
+        tencent: KonisGraph
+        ibm: Graph
+    - id: time-series-db
+      name: Time series DB
+      services:
+        aws: Timestream
+        azure: Time Series Insights
+        gcp: Bigtable
+        oracle: Time Series
+        alibaba: TimeSeries
+        tencent: CTSDB
+        ibm: Informix
+    - id: in-memory-cache
+      name: In-memory cache
+      services:
+        aws: ElastiCache
+        azure: Cache for Redis
+        gcp: Memorystore
+        oracle: Coherence
+        alibaba: ApsaraDB for Redis
+        tencent: TencentDB for Redis
+        ibm: Databases for Redis
+  - id: analytics
+    name: Analytics
+    categories:
+    - id: bi-dashboards
+      name: BI & dashboards
+      services:
+        aws: QuickSight
+        azure: Power BI
+        gcp: Looker
+        oracle: Analytics Cloud
+        alibaba: Quick BI
+        tencent: RayData
+        ibm: Cognos Analytics
+  - id: data-integration
+    name: Data Integration
+    categories:
+    - id: etl
+      name: ETL
+      services:
+        aws: Glue
+        azure: Data Factory
+        gcp: Dataflow
+        oracle: Data Integration
+        alibaba: DataWorks
+        tencent: Data Integration
+        ibm: DataStage
+  - id: data-lake
+    name: Data Lake
+    categories:
+    - id: data-lake
+      name: Data lake
+      services:
+        aws: Lake Formation
+        azure: Data Lake Storage
+        gcp: BigLake
+        oracle: Data Lakehouse
+        alibaba: Data Lake Formulation
+        tencent: Data Lake Compute
+        ibm: watsonx.data
+- id: ai-ml
+  name: AI & ML
+  domains:
+  - id: ai-ml
+    name: AI & ML
+    categories:
+    - id: ml-platform
+      name: ML platform
+      services:
+        aws: SageMaker
+        azure: Machine Learning
+        gcp: Vertex AI
+        oracle: Data Science
+        alibaba: PAI
+        tencent: TI-ONE
+        ibm: watsonx.ai
+    - id: vision-ai
+      name: Vision AI
+      services:
+        aws: Rekognition
+        azure: Computer Vision
+        gcp: Vision API
+        oracle: Vision
+        alibaba: Visual Intelligence
+        tencent: Computer Vision
+        ibm: Visual Recognition
+    - id: speech-recognition
+      name: Speech recognition
+      services:
+        aws: Transcribe
+        azure: Speech Service
+        gcp: Speech-to-Text
+        oracle: Speech
+        alibaba: Intelligent Speech
+        tencent: ASR
+        ibm: Speech to Text
+    - id: translation
+      name: Translation
+      services:
+        aws: Translate
+        azure: Translator
+        gcp: Translation API
+        oracle: Language
+        alibaba: Machine Translation
+        tencent: TMT
+        ibm: Language Translator
+    - id: conversational-ai
+      name: Conversational AI
+      services:
+        aws: Lex
+        azure: AI Bot Service
+        gcp: Dialogflow
+        oracle: Digital Assistant
+        alibaba: Intelligent Service Robot
+        tencent: Chatbot
+        ibm: watsonx Assistant
+- id: devops-messaging
+  name: DevOps & Messaging
+  domains:
+  - id: devops
+    name: DevOps
+    categories:
+    - id: ci/cd-pipelines
+      name: CI/CD pipelines
+      services:
+        aws: CodePipeline
+        azure: DevOps
+        gcp: Cloud Build
+        oracle: DevOps
+        alibaba: Apsara DevOps
+        tencent: Coding DevOps
+        ibm: Continuous Delivery
+    - id: infrastructure-as-code
+      name: Infrastructure as code
+      services:
+        aws: CloudFormation
+        azure: Resource Manager (ARM)
+        gcp: Deployment Manager
+        oracle: Resource Manager
+        alibaba: ROS
+        tencent: TIC
+        ibm: Schematics
+    - id: ide-cloud-dev-env
+      name: IDE & cloud dev env
+      services:
+        aws: Cloud9 / CodeCatalyst
+        azure: Deployment Environments
+        gcp: Workstations / Cloud Shell
+        oracle: Cloud Shell
+        alibaba: Cloud Shell
+        tencent: Cloud Studio
+        ibm: Cloud Shell
+    - id: source-control
+      name: Source control
+      services:
+        aws: CodeCommit
+        azure: Repos
+        gcp: Source Repositories
+        oracle: Code Repository
+        alibaba: Codeup
+        tencent: Coding
+        ibm: git (generic)
+    - id: artifact-registry
+      name: Artifact registry
+      services:
+        aws: ECR
+        azure: Container Registry
+        gcp: Artifact Registry
+        oracle: Container Registry
+        alibaba: ACR
+        tencent: TCR
+        ibm: Container Registry
+  - id: messaging
+    name: Messaging
+    categories:
+    - id: queues
+      name: Queues
+      services:
+        aws: SQS
+        azure: Service Bus
+        gcp: Pub/Sub
+        oracle: Queue
+        alibaba: MNS
+        tencent: CMQ
+        ibm: MQ
+    - id: streaming
+      name: Streaming
+      services:
+        aws: Kinesis
+        azure: Event Hubs
+        gcp: Pub/Sub
+        oracle: Streaming
+        alibaba: DataHub
+        tencent: CKafka
+        ibm: Event Streams
+    - id: notifications
+      name: Notifications
+      services:
+        aws: SNS
+        azure: Notification Hubs
+        gcp: Firebase Cloud Messaging
+        oracle: Notifications
+        alibaba: DirectMail
+        tencent: Mobile Push
+        ibm: Push Notifications
+  - id: monitoring
+    name: Monitoring
+    categories:
+    - id: observability
+      name: Observability
+      services:
+        aws: CloudWatch
+        azure: Monitor
+        gcp: Cloud Monitoring
+        oracle: Monitoring
+        alibaba: CloudMonitor
+        tencent: Cloud Monitor
+        ibm: Cloud Monitoring
+- id: security-compliance
+  name: Security & Compliance
+  domains:
+  - id: security
+    name: Security
+    categories:
+    - id: secrets
+      name: Secrets
+      services:
+        aws: Secrets Manager
+        azure: Key Vault
+        gcp: Secret Manager
+        oracle: Vault
+        alibaba: KMS Secrets
+        tencent: Secrets Manager
+        ibm: Secrets Manager
+    - id: key-mgmt
+      name: Key Mgmt
+      services:
+        aws: KMS
+        azure: Key Vault
+        gcp: Cloud KMS
+        oracle: Vault
+        alibaba: KMS
+        tencent: KMS
+        ibm: Key Protect
+    - id: waf
+      name: WAF
+      services:
+        aws: WAF
+        azure: WAF
+        gcp: Cloud Armor
+        oracle: WAF
+        alibaba: WAF
+        tencent: WAF
+        ibm: Web Application Firewall
+    - id: ddos
+      name: DDoS
+      services:
+        aws: Shield
+        azure: DDoS Protection
+        gcp: Cloud Armor
+        oracle: DDoS Protection
+        alibaba: Anti-DDoS
+        tencent: Anti-DDoS
+        ibm: Cloud Internet Services
+    - id: compliance
+      name: Compliance
+      services:
+        aws: Config
+        azure: Policy
+        gcp: Org Policy
+        oracle: Cloud Guard
+        alibaba: Cloud Config
+        tencent: Config
+        ibm: Security and Compliance Center
+    - id: certificate-management
+      name: Certificate management
+      services:
+        aws: Certificate Manager
+        azure: App Service Certificates
+        gcp: Certificate Manager
+        oracle: Certificates
+        alibaba: SSL Certificates
+        tencent: SSL
+        ibm: Secrets Manager
+  - id: identity
+    name: Identity
+    categories:
+    - id: identity-federation
+      name: Identity federation
+      services:
+        aws: Cognito
+        azure: Entra External ID
+        gcp: Identity Platform
+        oracle: Identity Domains
+        alibaba: IDaaS
+        tencent: IDaaS
+        ibm: App ID
+- id: specialized-emerging
+  name: Specialized & Emerging
+  domains:
+  - id: media
+    name: Media
+    categories:
+    - id: streaming
+      name: Streaming
+      services:
+        aws: MediaLive/MediaConvert
+        azure: Video Indexer
+        gcp: Transcoder API
+        oracle: Media Flow
+        alibaba: Video Service
+        tencent: VOD/Live Streaming
+        ibm: Video Streaming
+    - id: packaging-drm
+      name: Packaging & DRM
+      services:
+        aws: MediaPackage
+        azure: Media Content Protection
+        gcp: Widevine
+        oracle: Media Processing
+        alibaba: DRM
+        tencent: DRM
+        ibm: Video Security
+  - id: spatial
+    name: Spatial
+    categories:
+    - id: ar/vr
+      name: AR/VR
+      services:
+        aws: Sumerian
+        azure: Remote Rendering / Spatial Anchors
+        gcp: ARCore
+        oracle: XR Lab
+        alibaba: XR Lab
+        tencent: XR Cloud
+        ibm: Immersive Experience
+  - id: robotics
+    name: Robotics
+    categories:
+    - id: robotics
+      name: Robotics
+      services:
+        aws: RoboMaker
+        azure: None
+        gcp: Vertex AI Vision
+        oracle: None
+        alibaba: Robot Stack
+        tencent: Robotics
+        ibm: Robotic Process Automation
+  - id: quantum
+    name: Quantum
+    categories:
+    - id: quantum-computing
+      name: Quantum computing
+      services:
+        aws: Braket
+        azure: Quantum
+        gcp: Quantum AI
+        oracle: None
+        alibaba: Quantum Lab
+        tencent: Quantum Lab
+        ibm: Quantum
+  - id: gis
+    name: GIS
+    categories:
+    - id: location-services
+      name: Location services
+      services:
+        aws: Location Service
+        azure: Maps
+        gcp: Maps Platform
+        oracle: Spatial Studio
+        alibaba: Map
+        tencent: Map
+        ibm: Environmental Intelligence
+- id: industry
+  name: Industry
+  domains:
+  - id: collaboration
+    name: Collaboration
+    categories:
+    - id: collaboration-suite
+      name: Collaboration suite
+      services:
+        aws: Chime
+        azure: Teams
+        gcp: Meet
+        oracle: Beehive
+        alibaba: DingTalk
+        tencent: Meeting
+        ibm: Aspera
+    - id: work-email
+      name: Work email
+      services:
+        aws: WorkMail
+        azure: Exchange Online
+        gcp: Gmail
+        oracle: Communications
+        alibaba: Mail
+        tencent: Exmail
+        ibm: Verse
+    - id: crm-erp-integration
+      name: CRM & ERP integration
+      services:
+        aws: AppFabric
+        azure: Dynamics 365
+        gcp: Workspace
+        oracle: Fusion Applications
+        alibaba: DingTalk
+        tencent: WeCom
+        ibm: Sterling
+  - id: financial
+    name: Financial
+    categories:
+    - id: financial-cloud
+      name: Financial cloud
+      services:
+        aws: Financial Services
+        azure: Financial Services Cloud
+        gcp: Financial Services
+        oracle: Financial Services
+        alibaba: Finance Cloud
+        tencent: FinTech
+        ibm: Cloud for Financial Services
+  - id: healthcare
+    name: Healthcare
+    categories:
+    - id: healthcare-cloud
+      name: Healthcare cloud
+      services:
+        aws: HealthLake
+        azure: Healthcare APIs
+        gcp: Healthcare API
+        oracle: Healthcare
+        alibaba: Healthcare Cloud
+        tencent: Healthcare Cloud
+        ibm: Health Data
+  - id: government
+    name: Government
+    categories:
+    - id: government-cloud
+      name: Government cloud
+      services:
+        aws: GovCloud
+        azure: Government
+        gcp: Public Sector
+        oracle: Government Cloud
+        alibaba: GovCloud
+        tencent: GovCloud
+        ibm: Cloud for Government
+  - id: retail
+    name: Retail
+    categories:
+    - id: manufacturing-cloud
+      name: Manufacturing cloud
+      services:
+        aws: Supply Chain
+        azure: Cloud for Retail
+        gcp: Retail Search
+        oracle: Retail
+        alibaba: New Retail
+        tencent: Smart Retail
+        ibm: Sterling Supply Chain

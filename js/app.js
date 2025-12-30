@@ -11,19 +11,60 @@ function cloudMatrix() {
         showFilters: window.innerWidth > 768,
         isCategoryExpanded: true,
         tierKey: 'Tier', domainKey: 'Domain', categoryKey: 'Category',
+        modalOpen: false,
+        selectedService: { name: '', provider: '', url: null },
+        providers: {},
+        searchEngines: {},
+        aiEngines: {},
 
         async init() {
             try {
-                const res = await fetch('data.csv');
+                const res = await fetch('data_db.yaml');
                 const text = await res.text();
-                const result = Papa.parse(text, { header: true, skipEmptyLines: true, transformHeader: h => h.trim() });
-                if (result.data.length > 0) {
-                    const keys = Object.keys(result.data[0]);
-                    this.tierKey = keys.find(k => k.match(/tier/i)) || 'Tier';
-                    this.domainKey = keys.find(k => k.match(/domain/i)) || 'Domain';
-                    this.categoryKey = keys.find(k => k.match(/category/i)) || 'Category';
-                }
-                this.rawData = result.data.map((row, index) => ({ ...row, id: index }));
+                const hierarchy = jsyaml.load(text);
+
+                this.providers = hierarchy.config.providers;
+                this.searchEngines = hierarchy.config.search_engines || {};
+                this.aiEngines = hierarchy.config.ai_engines || {};
+                const data = hierarchy.data;
+
+                // Flatten hierarchy into rows for the table
+                const rows = [];
+                data.forEach(tier => {
+                    tier.domains.forEach(domain => {
+                        domain.categories.forEach(cat => {
+                            const row = {
+                                'Tier': tier.name,
+                                'Domain': domain.name,
+                                'Category': cat.name,
+                                'id': cat.id
+                            };
+
+                            Object.entries(cat.services).forEach(([key, value]) => {
+                                if (this.providers[key]) {
+                                    const providerName = this.providers[key].name;
+                                    // Handle both string and object formats
+                                    if (typeof value === 'object') {
+                                        row[providerName] = value.name;
+                                        row[providerName + '_url'] = value.url;
+                                    } else {
+                                        row[providerName] = value;
+                                    }
+                                }
+                            });
+
+                            rows.push(row);
+                        });
+                    });
+                });
+
+                this.rawData = rows.map((row, index) => ({ ...row, id: index }));
+
+                // Set default keys
+                this.tierKey = 'Tier';
+                this.domainKey = 'Domain';
+                this.categoryKey = 'Category';
+
                 this.loading = false;
             } catch (e) { console.error(e); }
         },
@@ -31,7 +72,10 @@ function cloudMatrix() {
         get providerColumns() {
             if (this.rawData.length === 0) return [];
             const meta = [this.tierKey, this.domainKey, this.categoryKey, 'id'];
-            return Object.keys(this.rawData[0]).filter(k => !meta.includes(k)).sort((a, b) => a.localeCompare(b));
+            // Filter out _url columns from the display columns
+            return Object.keys(this.rawData[0])
+                .filter(k => !meta.includes(k) && !k.endsWith('_url'))
+                .sort((a, b) => a.localeCompare(b));
         },
 
         get uniqueTiers() { return [...new Set(this.rawData.map(r => r[this.tierKey]).filter(Boolean))].sort(); },
@@ -61,6 +105,50 @@ function cloudMatrix() {
         resetAll() {
             this.search = ''; this.selectedTier = ''; this.selectedDomain = '';
             this.hiddenColumns = [];
+        },
+
+        get sortedSearchEngines() {
+            return Object.values(this.searchEngines).sort((a, b) => a.name.localeCompare(b.name));
+        },
+
+        get sortedAIEngines() {
+            return Object.values(this.aiEngines).sort((a, b) => a.name.localeCompare(b.name));
+        },
+
+        highlight(text) {
+            if (!this.search || !text) return text;
+            const regex = new RegExp(`(${this.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            return text.toString().replace(regex, '<mark class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-900 dark:text-indigo-200 px-0.5 rounded-sm ring-1 ring-indigo-200 dark:ring-indigo-700/50">$1</mark>');
+        },
+
+        openServiceModal(provider, row) {
+            const serviceName = row[provider];
+            if (!serviceName || serviceName === '-') return;
+
+            // Find the provider key based on the display name
+            const providerKey = Object.keys(this.providers).find(key => this.providers[key].name === provider);
+
+            this.selectedService = {
+                name: serviceName,
+                provider: provider, // Display Name
+                providerKey: providerKey, // Config Key
+                url: row[provider + '_url'] || null
+            };
+            this.modalOpen = true;
+        },
+
+        searchWeb(engineUrl) {
+            const query = encodeURIComponent(`${this.selectedService.name} ${this.selectedService.provider}`);
+            window.open(`${engineUrl}${query}`, '_blank');
+        },
+
+        searchNativeDocs() {
+            const key = this.selectedService.providerKey;
+            const service = this.selectedService.name;
+
+            if (key && this.providers[key] && this.providers[key].searchUrl) {
+                window.open(`${this.providers[key].searchUrl}${encodeURIComponent(service)}`, '_blank');
+            }
         }
     }
 }
