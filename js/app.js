@@ -15,6 +15,7 @@ function cloudMatrix() {
         selectedService: { name: '', provider: '', url: null },
         providers: {},
         searchEngines: {},
+        aiEngines: {},
 
         async init() {
             try {
@@ -24,6 +25,7 @@ function cloudMatrix() {
 
                 this.providers = hierarchy.config.providers;
                 this.searchEngines = hierarchy.config.search_engines || {};
+                this.aiEngines = hierarchy.config.ai_engines || {};
                 const data = hierarchy.data;
 
                 // Flatten hierarchy into rows for the table
@@ -107,6 +109,10 @@ function cloudMatrix() {
 
         get sortedSearchEngines() {
             return Object.values(this.searchEngines).sort((a, b) => a.name.localeCompare(b.name));
+        },
+
+        get sortedAIEngines() {
+            return Object.values(this.aiEngines).sort((a, b) => a.name.localeCompare(b.name));
         },
 
         highlight(text) {

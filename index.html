@@ -315,6 +315,28 @@
                                 </div>
                             </div>
 
+                            <!-- AI Search -->
+                            <div>
+                                <h4
+                                    class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">
+                                    AI Search</h4>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                    <template x-for="engine in sortedAIEngines" :key="engine.name">
+                                        <button @click="searchWeb(engine.url)"
+                                            class="flex items-center justify-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+                                            <template x-if="engine.icon_domain">
+                                                <img :src="`https://www.google.com/s2/favicons?domain=${engine.icon_domain}`"
+                                                    class="w-4 h-4" :alt="engine.name" loading="lazy">
+                                            </template>
+                                            <template x-if="!engine.icon_domain">
+                                                <span class="text-slate-400" x-text="engine.name.charAt(0)"></span>
+                                            </template>
+                                            <span x-text="engine.name"></span>
+                                        </button>
+                                    </template>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

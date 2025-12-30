@@ -77,6 +77,31 @@ config:
       name: YEP
       url: https://yep.com/web?q=
       icon_domain: yep.com
+    alternativeto:
+      name: AlternativeTo
+      url: https://alternativeto.net/browse/search/?q=
+      icon_domain: alternativeto.net
+  ai_engines:
+    chatgpt:
+      name: ChatGPT
+      url: https://chat.openai.com/?q=
+      icon_domain: openai.com
+    phind:
+      name: Phind
+      url: https://phind.com/search?q=
+      icon_domain: phind.com
+    andi:
+      name: Andi
+      url: https://andisearch.com/?q=
+      icon_domain: andisearch.com
+    perplexity:
+      name: Perplexity
+      url: https://www.perplexity.ai/search?q=
+      icon_domain: perplexity.ai
+    exa:
+      name: Exa
+      url: https://exa.ai/search?q=
+      icon_domain: exa.ai
 data:
 - id: core-infrastructure
   name: Core Infrastructure
