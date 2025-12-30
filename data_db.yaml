@@ -66,6 +66,10 @@ config:
       name: Mojeek
       url: https://www.mojeek.com/search?q=
       icon_domain: mojeek.com
+    yep:
+      name: YEP
+      url: https://yep.com/web?q=
+      icon_domain: yep.com
 data:
 - id: core-infrastructure
   name: Core Infrastructure
