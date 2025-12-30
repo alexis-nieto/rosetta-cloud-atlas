@@ -1,0 +1,57 @@
+Tier,Domain,Category,AWS,Azure,Google Cloud,Oracle Cloud (OCI),Alibaba Cloud,Tencent Cloud,IBM Cloud
+Core Infrastructure,Compute,Virtual machines,EC2,Virtual Machines,Compute Engine,Compute Instances,ECS,CVM,Virtual Servers
+Core Infrastructure,Compute,Kubernetes,EKS,AKS,GKE,OKE,ACK,TKE,IBM Kubernetes Service
+Core Infrastructure,Compute,Serverless functions,Lambda,Azure Functions,Cloud Functions,OCI Functions,Function Compute,SCF,IBM Cloud Functions
+Core Infrastructure,Storage,Object storage,S3,Blob Storage,Cloud Storage,Object Storage,OSS,COS,Cloud Object Storage
+Core Infrastructure,Storage,Block storage,EBS,Managed Disks,Persistent Disk,Block Volumes,Cloud Disk,CBS,Block Storage
+Core Infrastructure,Storage,File storage,EFS,Azure Files,Filestore,File Storage,NAS,Cloud File Storage,File Storage
+Core Infrastructure,Storage,Archive storage,Glacier,Azure Archive Storage,Archive Storage,Archive Storage,Cold Archive,Cold Storage,Cloud Object Storage Archive
+Core Infrastructure,Networking,Virtual network,VPC,VNet,VPC,VCN,VPC,VPC,VPC
+Core Infrastructure,Networking,Load balancing,ELB,Azure Load Balancer,Cloud Load Balancing,Load Balancer,SLB,CLB,Load Balancer
+Core Infrastructure,Networking,DNS,Route 53,Azure DNS,Cloud DNS,OCI DNS,Alibaba DNS,Tencent DNS,IBM DNS
+Core Infrastructure,Networking,Private connectivity,Direct Connect,ExpressRoute,Cloud Interconnect,FastConnect,Express Connect,Direct Connect,Direct Link
+Core Infrastructure,Networking,VPN,VPN Gateway,Azure VPN Gateway,Cloud VPN,OCI VPN,VPN Gateway,VPN Gateway,VPN
+Core Infrastructure,Identity,Identity & access management,IAM,Microsoft Entra ID,Cloud IAM,OCI IAM,RAM,CAM,IBM IAM
+Data & Analytics,Databases,Relational DB,RDS,Azure SQL Database,Cloud SQL,Autonomous DB,ApsaraDB,TencentDB,Db2 on Cloud
+Data & Analytics,Databases,NoSQL DB,DynamoDB,Cosmos DB,Firestore/Bigtable,NoSQL DB,Table Store,TencentDB Mongo/Redis,Cloudant
+Data & Analytics,Databases,Data warehouse,Redshift,Synapse,BigQuery,Autonomous DW,AnalyticDB,TencentDB Analytics,Db2 Warehouse
+Data & Analytics,Databases,Graph DB,Neptune,Cosmos DB (Gremlin),Graph Engine,Graph Database,Graph Database,Graph Database,IBM Graph
+Data & Analytics,Databases,Time series DB,Timestream,Time Series Insights,Bigtable TS,Time Series DB,TSDB,Time Series DB,Informix TimeSeries
+Data & Analytics,Databases,In-memory cache,ElastiCache,Azure Cache for Redis,MemoryStore,Oracle Coherence,Redis,TencentDB for Redis,IBM Data Cache
+Data & Analytics,Analytics,BI & dashboards,QuickSight,Power BI,Looker,Analytics Cloud,Quick BI,DataLake Analytics,Cognos Analytics
+Data & Analytics,Data Integration,ETL,Glue,Data Factory,Dataflow,Data Integration,DataWorks,Data Integration,DataStage
+Data & Analytics,Data Lake,Data lake,Lake Formation,Data Lake Storage,BigLake,Data Lakehouse,Data Lake,Tencent DataLake,Cloud Pak for Data
+AI & ML,AI/ML,ML platform,SageMaker,Azure Machine Learning,Vertex AI,OCI Data Science,PAI,TI-ONE,watsonx.ai
+AI & ML,AI/ML,Vision AI,Rekognition,Computer Vision,Vision API,OCI Vision,Image Search,Tencent Image Recognition,watsonx.ai Vision
+AI & ML,AI/ML,Speech recognition,Transcribe,Speech Service,Speech-to-Text,OCI Speech,Speech Interaction,Tencent ASR,Watson Speech to Text
+AI & ML,AI/ML,Translation,Translate,Translator,Translation API,OCI Translation,Machine Translation,Tencent TMT,Watson Language Translator
+AI & ML,AI/ML,Conversational AI,Lex,Azure Bot Service,Vertex AI Conversation,Digital Assistant,Chatbot,Tencent Chatbot,Watson Assistant
+DevOps & Messaging,DevOps,CI/CD pipelines,CodePipeline,Azure DevOps,Cloud Build,OCI DevOps,Cloud DevOps,Tencent DevOps,IBM DevOps
+DevOps & Messaging,DevOps,Infrastructure as code,CloudFormation,Azure Resource Manager,Deployment Manager,OCI Resource Manager,ROS,TCCL,IBM Schematics (Terraform)
+DevOps & Messaging,DevOps,IDE & cloud dev env,VS Code Toolkit / GitHub Codespaces,Azure Deployment Environments,Cloud Workstations / Cloud Shell,OCI Cloud Shell,Cloud Shell,Tencent Cloud IDE,IBM Cloud Shell
+DevOps & Messaging,DevOps,Source control,CodeCommit,Azure Repos,Cloud Source Repositories,OCI Code Repository,Alibaba Code,Tencent Git Service,GitHub Enterprise (IBM)
+DevOps & Messaging,DevOps,Artifact registry,ECR,Azure Container Registry,Artifact Registry / GCR,OCI Container Registry,ACR,Tencent TCR,IBM Container Registry
+DevOps & Messaging,Messaging,Queues,SQS/SNS,Service Bus,Pub/Sub,OCI Streaming,MNS,CMQ,IBM MQ
+DevOps & Messaging,Messaging,Streaming,Kinesis,Event Hubs,Pub/Sub,OCI Streaming,DataHub,CKafka,IBM Event Streams
+DevOps & Messaging,Messaging,Notifications,SNS,Notification Hubs,Firebase Cloud Messaging,OCI Notifications,DirectMail,Tencent Push,IBM Push Notifications
+DevOps & Messaging,Monitoring,Observability,CloudWatch,Azure Monitor,Cloud Monitoring,OCI Monitoring,CloudMonitor,Cloud Monitor,IBM Monitoring
+Security & Compliance,Security,Secrets,Secrets Manager,Key Vault,Secret Manager,OCI Vault,KMS Secrets,Tencent Secrets Manager,Secrets Manager
+Security & Compliance,Security,Key Mgmt,KMS,Key Vault,Cloud KMS,OCI Vault,KMS,Cloud KMS,Key Protect
+Security & Compliance,Security,WAF,AWS WAF,Azure WAF,Cloud Armor,OCI WAF,WAF,WAF,WAF
+Security & Compliance,Security,DDoS,Shield,Azure DDoS Protection,Cloud Armor Advanced,OCI DDoS,Anti-DDoS,Anti-DDoS,IBM CIS
+Security & Compliance,Security,Compliance,Config,Azure Policy,Org Policy,Cloud Guard,Cloud Config,Tencent Config,Compliance Center
+Security & Compliance,Security,Certificate management,Certificate Manager,Azure Cert Manager,Certificate Manager,OCI Certificates,SSL Certificates,Tencent SSL,IBM Certificate Manager
+Security & Compliance,Identity,Identity federation,Cognito,Azure AD B2C,Identity Platform,Identity Federation,IDaaS,Tencent SSO,IBM Security Verify
+Specialized & Emerging,Media,Streaming,MediaLive/MediaConvert,Azure Video Indexer,Transcoder API,OCI Media Flow,Video Service,VOD/Live Streaming,IBM Video Streaming
+Specialized & Emerging,Media,Packaging & DRM,MediaPackage,Azure Media DRM,Widevine,OCI Media Processing,Alibaba DRM,Tencent DRM,IBM Video Security
+Specialized & Emerging,Spatial,AR/VR,Amazon Sumerian,Azure Mixed Reality,ARCore,Oracle AR integrations,Alibaba XR Lab,Tencent XR Cloud,IBM Immersive Experience
+Specialized & Emerging,Robotics,Robotics,RoboMaker,Azure Robotics,Google Robotics APIs,Oracle Robotics,Alibaba Robotics,Tencent Robotics,IBM Robotics
+Specialized & Emerging,Quantum,Quantum computing,Braket,Azure Quantum,Quantum AI (research),Oracle Quantum (partners),Quantum Lab,Quantum Lab,IBM Quantum
+Specialized & Emerging,GIS,Location services,Location Service,Azure Maps,Google Maps Platform,Oracle Spatial,Alibaba Map,Tencent Map,IBM Map Services
+Industry,Collaboration,Collaboration suite,Chime,Teams,Google Meet,Oracle Collaboration Suite,DingTalk,Tencent Meeting,Sametime
+Industry,Collaboration,Work email,WorkMail,Exchange Online,Gmail,Oracle Mail,Alibaba Mail,Tencent Exmail,IBM Notes/Domino
+Industry,Collaboration,CRM & ERP integration,Salesforce integrations,Dynamics 365,Google Workspace integrations,Oracle Fusion Apps,DingTalk,WeCom,IBM Sterling / Maximo
+Industry,Financial,Financial cloud,FinCloud,Azure FinServ,Google FinServ,Oracle FinServ,FinCloud,FinTech,IBM FinServ Cloud
+Industry,Healthcare,Healthcare cloud,HealthLake,Azure Healthcare APIs,Cloud Healthcare,Oracle Healthcare,Healthcare Cloud,Healthcare Cloud,Watson Health
+Industry,Government,Government cloud,GovCloud,Azure Government,Google Public Sector,Oracle Public Sector,GovCloud,GovCloud,Government Cloud
+Industry,Retail,Manufacturing cloud,AWS Retail/Manufacturing,Azure Retail/Manufacturing,Google Retail/Manufacturing,Oracle Retail/Manufacturing,Alibaba Retail Cloud,Tencent Retail Cloud,IBM Industry Solutions
