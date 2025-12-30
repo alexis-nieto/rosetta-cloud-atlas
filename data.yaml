@@ -1,3 +1,27 @@
+config:
+  providers:
+    aws:
+      name: AWS
+      searchUrl: https://docs.aws.amazon.com/search/doc-search.html?searchQuery=
+    azure:
+      name: Azure
+      searchUrl: https://learn.microsoft.com/en-us/search/?terms=
+    gcp:
+      name: Google Cloud
+      searchUrl: https://cloud.google.com/search?q=
+    oracle:
+      name: Oracle Cloud (OCI)
+      searchUrl: https://docs.oracle.com/en/search.html?q=
+    alibaba:
+      name: Alibaba Cloud
+      searchUrl: https://www.google.com/search?q=site:alibabacloud.com/help+
+    tencent:
+      name: Tencent Cloud
+      searchUrl: https://www.tencentcloud.com/search?q=
+    ibm:
+      name: IBM Cloud
+      searchUrl: https://cloud.ibm.com/docs/search?q=
+data:
 - id: core-infrastructure
   name: Core Infrastructure
   domains:
@@ -40,7 +64,9 @@
     - id: object-storage
       name: Object storage
       services:
-        aws: S3
+        aws:
+          name: S3
+          url: https://aws.amazon.com/s3/
         azure: Blob Storage
         gcp: Cloud Storage
         oracle: Object Storage

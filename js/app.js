@@ -11,6 +11,9 @@ function cloudMatrix() {
         showFilters: window.innerWidth > 768,
         isCategoryExpanded: true,
         tierKey: 'Tier', domainKey: 'Domain', categoryKey: 'Category',
+        modalOpen: false,
+        selectedService: { name: '', provider: '', url: null },
+        providers: {},
 
         async init() {
             try {
@@ -18,9 +21,12 @@ function cloudMatrix() {
                 const text = await res.text();
                 const hierarchy = jsyaml.load(text);
 
+                this.providers = hierarchy.config.providers;
+                const data = hierarchy.data;
+
                 // Flatten hierarchy into rows for the table
                 const rows = [];
-                hierarchy.forEach(tier => {
+                data.forEach(tier => {
                     tier.domains.forEach(domain => {
                         domain.categories.forEach(cat => {
                             const row = {
@@ -30,21 +36,16 @@ function cloudMatrix() {
                                 'id': cat.id
                             };
 
-                            // Map service keys (aws, azure, etc) to display names (AWS, Azure, etc)
-                            // We use the keys from the config or hardcode the mapping since we are migrating
-                            const providerMap = {
-                                'aws': 'AWS',
-                                'azure': 'Azure',
-                                'gcp': 'Google Cloud',
-                                'oracle': 'Oracle Cloud (OCI)',
-                                'alibaba': 'Alibaba Cloud',
-                                'tencent': 'Tencent Cloud',
-                                'ibm': 'IBM Cloud'
-                            };
-
                             Object.entries(cat.services).forEach(([key, value]) => {
-                                if (providerMap[key]) {
-                                    row[providerMap[key]] = value;
+                                if (this.providers[key]) {
+                                    const providerName = this.providers[key].name;
+                                    // Handle both string and object formats
+                                    if (typeof value === 'object') {
+                                        row[providerName] = value.name;
+                                        row[providerName + '_url'] = value.url;
+                                    } else {
+                                        row[providerName] = value;
+                                    }
                                 }
                             });
 
@@ -55,7 +56,7 @@ function cloudMatrix() {
 
                 this.rawData = rows.map((row, index) => ({ ...row, id: index }));
 
-                // Set default keys if not found (though our construction ensures they exist)
+                // Set default keys
                 this.tierKey = 'Tier';
                 this.domainKey = 'Domain';
                 this.categoryKey = 'Category';
@@ -67,7 +68,10 @@ function cloudMatrix() {
         get providerColumns() {
             if (this.rawData.length === 0) return [];
             const meta = [this.tierKey, this.domainKey, this.categoryKey, 'id'];
-            return Object.keys(this.rawData[0]).filter(k => !meta.includes(k)).sort((a, b) => a.localeCompare(b));
+            // Filter out _url columns from the display columns
+            return Object.keys(this.rawData[0])
+                .filter(k => !meta.includes(k) && !k.endsWith('_url'))
+                .sort((a, b) => a.localeCompare(b));
         },
 
         get uniqueTiers() { return [...new Set(this.rawData.map(r => r[this.tierKey]).filter(Boolean))].sort(); },
@@ -105,23 +109,42 @@ function cloudMatrix() {
             return text.toString().replace(regex, '<mark class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-900 dark:text-indigo-200 px-0.5 rounded-sm ring-1 ring-indigo-200 dark:ring-indigo-700/50">$1</mark>');
         },
 
-        openDocSearch(provider, service) {
-            if (!service || service === '-') return;
+        openServiceModal(provider, row) {
+            const serviceName = row[provider];
+            if (!serviceName || serviceName === '-') return;
 
-            // Map provider names to search URLs
-            const searchUrls = {
-                'AWS': 'https://docs.aws.amazon.com/search/doc-search.html?searchQuery=',
-                'Azure': 'https://learn.microsoft.com/en-us/search/?terms=',
-                'Google Cloud': 'https://cloud.google.com/search?q=',
-                'Oracle Cloud (OCI)': 'https://docs.oracle.com/en/search.html?q=',
-                'Alibaba Cloud': 'https://www.alibabacloud.com/help/en/search?k=',
-                'Tencent Cloud': 'https://www.tencentcloud.com/search?q=',
-                'IBM Cloud': 'https://cloud.ibm.com/docs/search?q='
+            // Find the provider key based on the display name
+            // This is a bit reverse lookup, but since we flattened it using display names, we need to map back or store keys.
+            // A better way would be to store the provider key in the selectedService.
+            const providerKey = Object.keys(this.providers).find(key => this.providers[key].name === provider);
+
+            this.selectedService = {
+                name: serviceName,
+                provider: provider, // Display Name
+                providerKey: providerKey, // Config Key
+                url: row[provider + '_url'] || null
             };
+            this.modalOpen = true;
+        },
 
-            const baseUrl = searchUrls[provider];
-            if (baseUrl) {
-                window.open(`${baseUrl}${encodeURIComponent(service)}`, '_blank');
+        searchWeb(engine) {
+            const query = encodeURIComponent(`${this.selectedService.name} ${this.selectedService.provider}`);
+            const engines = {
+                google: `https://www.google.com/search?q=${query}`,
+                ddg: `https://duckduckgo.com/?q=${query}`,
+                bing: `https://www.bing.com/search?q=${query}`,
+                brave: `https://search.brave.com/search?q=${query}`,
+                qwant: `https://www.qwant.com/?q=${query}`
+            };
+            window.open(engines[engine], '_blank');
+        },
+
+        searchNativeDocs() {
+            const key = this.selectedService.providerKey;
+            const service = this.selectedService.name;
+
+            if (key && this.providers[key] && this.providers[key].searchUrl) {
+                window.open(`${this.providers[key].searchUrl}${encodeURIComponent(service)}`, '_blank');
             }
         }
     }
