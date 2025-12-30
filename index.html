@@ -18,7 +18,7 @@
 
     <!-- Libraries -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 </head>
 
 <body x-init="$watch('search', value => {
@@ -198,8 +198,9 @@
                                     </div>
                                 </td>
                                 <template x-for="col in providerColumns" :key="col">
-                                    <td x-show="!hiddenColumns.includes(col)"
-                                        class="px-6 py-5 text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white border-b border-slate-50 dark:border-slate-800 align-middle font-medium">
+                                    <td x-show="!hiddenColumns.includes(col)" @click="openDocSearch(col, row[col])"
+                                        :class="row[col] && row[col] !== '-' ? 'cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50' : ''"
+                                        class="px-6 py-5 text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white border-b border-slate-50 dark:border-slate-800 align-middle font-medium transition-colors">
                                         <span x-html="highlight(row[col]) || '-'" class="block"></span>
                                     </td>
                                 </template>
