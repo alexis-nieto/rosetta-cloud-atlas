@@ -61,6 +61,12 @@ function cloudMatrix() {
         resetAll() {
             this.search = ''; this.selectedTier = ''; this.selectedDomain = '';
             this.hiddenColumns = [];
+        },
+
+        highlight(text) {
+            if (!this.search || !text) return text;
+            const regex = new RegExp(`(${this.search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            return text.toString().replace(regex, '<mark class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-900 dark:text-indigo-200 px-0.5 rounded-sm ring-1 ring-indigo-200 dark:ring-indigo-700/50">$1</mark>');
         }
     }
 }

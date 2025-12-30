@@ -21,7 +21,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 h-screen flex flex-col overflow-hidden"
+<body x-init="$watch('search', value => {
+        if (!value) return;
+        $nextTick(() => {
+            const firstMark = $el.querySelector('mark');
+            if (firstMark) {
+                firstMark.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        });
+    })" class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 h-screen flex flex-col overflow-hidden"
     x-data="cloudMatrix()">
 
     <div class="w-full px-3 md:px-6 pt-6 pb-2 flex-none z-40">
@@ -173,7 +181,8 @@
                                     :class="isCategoryExpanded ? '' : '!px-1'">
                                     <div x-show="isCategoryExpanded">
                                         <div class="font-bold text-slate-900 dark:text-white text-xs md:text-sm leading-tight break-words cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                                            @click.stop="search = row[categoryKey]" x-text="row[categoryKey]"></div>
+                                            @click.stop="search = row[categoryKey]"
+                                            x-html="highlight(row[categoryKey])"></div>
                                         <div
                                             class="flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-2 mt-1 md:mt-2">
                                             <span
@@ -191,7 +200,7 @@
                                 <template x-for="col in providerColumns" :key="col">
                                     <td x-show="!hiddenColumns.includes(col)"
                                         class="px-6 py-5 text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white border-b border-slate-50 dark:border-slate-800 align-middle font-medium">
-                                        <span x-text="row[col] || '-'" class="block"></span>
+                                        <span x-html="highlight(row[col]) || '-'" class="block"></span>
                                     </td>
                                 </template>
                             </tr>
