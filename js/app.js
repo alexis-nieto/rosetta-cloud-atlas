@@ -9,6 +9,7 @@ function cloudMatrix() {
         showAllTiers: false,
         showAllDomains: false,
         showFilters: window.innerWidth > 768,
+        isCategoryExpanded: true,
         tierKey: 'Tier', domainKey: 'Domain', categoryKey: 'Category',
 
         async init() {
