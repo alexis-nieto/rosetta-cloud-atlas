@@ -11,7 +11,7 @@ config:
       searchUrl: https://cloud.google.com/search?q=
     oracle:
       name: Oracle Cloud (OCI)
-      searchUrl: https://docs.oracle.com/en/search.html?q=
+      searchUrl: https://docs.oracle.com/search/?q=
     alibaba:
       name: Alibaba Cloud
       searchUrl: https://www.google.com/search?q=site:alibabacloud.com/help+
