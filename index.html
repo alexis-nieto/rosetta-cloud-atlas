@@ -223,7 +223,7 @@
                 search: '',
                 selectedTier: '',
                 selectedDomain: '',
-                hiddenColumns: ['IBM Cloud'],
+                hiddenColumns: [],
                 showAllTiers: false,
                 showAllDomains: false,
                 tierKey: 'Tier', domainKey: 'Domain', categoryKey: 'Category',
@@ -247,7 +247,7 @@
                 get providerColumns() {
                     if (this.rawData.length === 0) return [];
                     const meta = [this.tierKey, this.domainKey, this.categoryKey, 'id'];
-                    return Object.keys(this.rawData[0]).filter(k => !meta.includes(k));
+                    return Object.keys(this.rawData[0]).filter(k => !meta.includes(k)).sort((a, b) => a.localeCompare(b));
                 },
 
                 get uniqueTiers() { return [...new Set(this.rawData.map(r => r[this.tierKey]).filter(Boolean))].sort(); },
@@ -276,7 +276,7 @@
 
                 resetAll() {
                     this.search = ''; this.selectedTier = ''; this.selectedDomain = '';
-                    this.hiddenColumns = ['IBM Cloud'];
+                    this.hiddenColumns = [];
                 }
             }
         }
